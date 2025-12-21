@@ -1,0 +1,70 @@
+\documentclass[12pt]{article}
+\usepackage[T5]{fontenc}
+\usepackage{tabularray}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese,english]{babel}
+\usepackage{amsmath}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{algorithm}
+\usepackage{examplep}
+\usepackage{algpseudocode}
+\usepackage{kantlipsum}
+\setlength{\marginparwidth}{2cm}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{geometry}
+\usepackage{biblatex}
+\usepackage{biblatex} %Imports biblatex package
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{svg}
+\usepackage{xcolor}
+\usepackage{soul}
+% \geometry{left=23mm, right = 23mm, top=33mm,}
+\geometry{left=20mm, right = 20mm, top=20mm, bottom=20mm}
+
+% \usepackage[left=1in, right=1in, top=1.5in, bottom=1.5in]{geometry}
+
+\lstset{
+    language=C++, % or any other language you're using
+    basicstyle=\ttfamily,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!40!black},
+    stringstyle=\color{orange},
+    breaklines=true,
+    showstringspaces=false,
+}
+
+\usepackage{xparse}
+
+\NewDocumentCommand{\codeword}{v}{%
+\texttt{\textcolor{blue}{#1}}%
+}
+
+\lstset{language=C,keywordstyle={\bfseries \color{blue}}}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+\setlength{\parindent}{0pt}
+
+\addbibresource{ref.bib}
+\begin{document}
+    \include{title}
+    \tableofcontents
+    \pagebreak
+    \input{ques_01}
+    \input{ques_02}
+    \input{ques_03}
+    \printbibliography
+    % ref 
+\end{document}

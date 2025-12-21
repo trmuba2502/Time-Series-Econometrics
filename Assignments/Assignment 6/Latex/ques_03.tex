@@ -1,0 +1,48 @@
+\section{Question 3}
+\textbf{i. What is the main research question of the paper? What are the three key variables studied? Which variables are endogenous and which are exogenous?}
+
+\begin{itemize}
+    \item The main research question is to measure the effects of monetary policy on the Vietnamese economy. Three key variables are interest rate, aggregate price, and output.
+    \item Endogenous variables include Industrial production index, Consumer price index, Broad money, Central Bank policy rate, Total domestic credit, and Nominal exchange rate.
+    \item Exdogenous variables are World oil price, and Chinese lending rate.
+\end{itemize}
+
+\textbf{ii. What are the stationarity properties of the variables? How did the authors handle seasonal adjustment of the data?}
+
+\begin{itemize}
+    \item Broad money, total credit, and the Chinese lending rates are stationary at level; the five other time series are stationary at first difference.
+    \item The authors detected seasonality by regressing each variable on seasonal dummy variables and a yearly time trend. Additionally, the alternative solution, which uses a complete set of monthly dummy variables in the VAR models to deal with seasonality.
+\end{itemize}
+
+\[
+Y_t = c_0 + qYear_t + \sum_{i=1}^{11} m_iD_{it} + \epsilon_t
+\]
+
+\textbf{iii. Which model is used in the study – VAR or SVAR? What method is employed to identify the non–white-noise residual matrix $u_t$?}
+\begin{itemize}
+    \item Model used in the study is VAR. Method employed is to identify the non-white-noiseresidual matrix $u_t$ is Cholesky decomposition of endogenous variables. The authors choose Cholesky decomposition because it imposes fewer restrictions.
+\end{itemize}
+
+\textbf{iv. Is this methodology purely atheoretical, or does it rely on theoretical a priori assumptions?}
+It is not purely atheoretical, it based on theoretical framework and Granger-causality test. 
+\begin{itemize}
+    \item According to Christiano, Eichenbaum, and Evans (2005); Kim and Roubini (2000); Elbourne and de Haan (2009); Raghavan, Silvapulle, and Athanasopoulos (2012), the linkages between these variables: IPI $\rightarrow$ CPI \& M2 $\rightarrow$ Interest rate $\rightarrow$ Credit $\rightarrow$ Exchange rate.
+    \item The Granger-causality test also shares the same results, \hl{IPI, CPI} Granger-cause \hl{M2, Inte, EXC}. M2 Granger-causes Inte and EXC at the 10\% significance level and Cred at the 1\% significance level. Inte Granger-causes Cred at 1\% significant level. EXC is Granger-caused by almost all variables (IPI, CPI, M2, Cred)
+\end{itemize}
+
+\textbf{v. Summarize the effect of a monetary policy shock on inflation and national output based on the impulse response functions.}
+
+\hl{Response of National Output (Industrial Production)}: The analysis indicates that national output largely unresponse to monetary shocks in the short run, except money supply.
+\begin{itemize}
+    \item \textbf{Broad Money Supply} There is no impact during the first quarter (0–3 months), but a statistically significant positive effect from the 4th month onwards.
+    \item \textbf{Other Variables} Shocks to the interest rate, exchange rate, and credit do not statistically significant.
+\end{itemize}
+
+
+\hl{Response of Price Level}: The price level sensitive to monetary instruments
+\begin{itemize}
+    \item \textbf{Interest rate} A shock to the interest rate has a significant negative effect on prices starting from the 3rd month and persisting until the 20th month. $\rightarrow$ monetary reduces inflation
+    \item \textbf{Log of exchange rate} Shock to exchange rate do not statistically significant 
+    \item \textbf{Log of broad money} The effect is statistically insignificant for the first two years (approx. 24 months), with a positive effect appearing only after the 26th month. $\rightarrow$ The money supply increase price level in long-term 
+    \item \textbf{Log of credit} a shock to the credit level leads to a negative response in prices, which is statistically significant between the 2nd and 30th months.
+\end{itemize}

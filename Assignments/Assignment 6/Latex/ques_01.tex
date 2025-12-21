@@ -1,0 +1,129 @@
+\section{Question 1}
+\textbf{i. Import the data, and limit the sample to the period of 1985-2019. Plot the three variables in a single graph}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{Images/Question 1/line.png}
+    \caption{Plot of ffr, inflation rate, and unemployment rate}
+    \label{fig:q1-line}
+\end{figure}
+
+\textbf{ii. Estimate the VAR model to learn about the dynamic interrelationships among the three variables. Note: use varsoc to select the optimal lag lengths.}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{Images/Question 1/varsoc.png}
+    \caption{Find optimal lag}
+    \label{fig:q1-varsoc}
+\end{figure}
+
+AIC smallest at \textbf{lag 5} $\rightarrow$ The optimal lag length is 5.
+
+\[
+\begin{aligned}
+    inflation_t = \alpha_{10} + \sum_{i=1}^5\beta_{1i} inflation_{t-i} + \sum_{j=1}^5 \gamma_{1j} unrate_{{t-j}} + \sum_{k=1}^5 \theta_{1k} ffr_{t-k} + \epsilon_{1t} \\
+    unrate_t = \alpha_{20} + \sum_{i=1}^5\beta_{2i} inflation_{t-i} + \sum_{j=1}^5 \gamma_{2j} unrate_{{t-j}} + \sum_{k=1}^5 \theta_{2k} ffr_{t-k} +\epsilon_{2t} \\
+    ffr_t = \alpha_{30} + \sum_{i=1}^5\beta_{3i} inflation_{t-i} + \sum_{j=1}^5 \gamma_{3j} unrate_{{t-j}} + \sum_{k=1}^5 \theta_{3k} ffr_{t-k} +\epsilon_{3t}
+\end{aligned}
+\]
+
+\hl{White noise test for residual}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.495\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/Question 1/res_ffr.png}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.495\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/Question 1/res_infl.png}
+    \end{subfigure}
+    \hfill  
+    \begin{subfigure}[b]{0.495\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/Question 1/res_unrate.png}
+    \end{subfigure}
+    \caption{residual VAR(6)}
+    \label{fig:residuals of VAR(6)}
+\end{figure}
+
+These graphs indicated that $\epsilon_t$ in 3 equations of VAR(5) is white noise
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/Question 1/var_1.png}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/Question 1/var_2.png}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/Question 1/var_3.png}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/Question 1/var_4.png}
+    \end{subfigure}
+    \caption{VAR(6)}
+    \label{fig:VAR(6)}
+\end{figure}
+
+The estimated result shows:
+\begin{itemize}
+    \item lag 1, 2 of ffr, lag 4 of inflation, and lag 3 of urate affect \hl{ffr}
+    \item lag 1, 4, 5 of inflation affect \hl{inflation}
+    \item lag 1 of unrate affect \hl{unrate}
+\end{itemize}
+
+\textbf{iii. Perform the impulse response function (IRF) analysis and make a brief comments (4-6 lines) on it.}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{Images/Question 1/irf.png}
+    \caption{Impulse Respond Function}
+    \label{fig:q1-irf}
+\end{figure}
+
+\hl{Response of Fed Fund Rate}
+\begin{itemize}
+    \item \textbf{To Own Shock (ffr)} The Federal Funds Rate response positively to its own lags
+    \item \textbf{To Inflation Shock} The policy response is delayed. There is no effect in the early periods. however, the rate gradually have amoderate positive effect in the long run
+    \item \textbf{To Unemployment Shock (unrate)} The rate shows no change in short-run but moderate negative response in the long run.
+\end{itemize}
+\hl{Response of Inflation rate}
+\begin{itemize}
+    \item \textbf{To Own Shock (inflation)} The response is positive during the early periods and then statistically insignificant after the 5th period.
+    \item \textbf{To FFR Shock} The response of inflation to a monetary policy shock is not statistically significant.
+    \item \textbf{To Unemployment Shock} The response of inflation to unemployment rate shock is not statistically significant.
+\end{itemize}
+\hl{Response of Unemployment Rate}
+\begin{itemize}
+    \item \textbf{To Own Shock (unrate)} The unemployment rate responds positively to its own shock.
+    \item \textbf{To FFR Shock} There is no statistically significant response of unemployment to the shock of the Federal Funds Rate.
+    \item 
+    \item \textbf{To Inflation Shock} The response of unemployment to inflation shocks is approximately zero.
+\end{itemize}
+
+\textbf{iv. Perform the Granger causality test based on your VAR estimation and interpret the results.} 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{Images/Question 1/granger.png}
+    \caption{Granger Causality test}
+    \label{fig:q1-granger}
+\end{figure}
+
+%Note: Granger test, H0: x (excluded) does not Granger-cause y (equation)
+\hl{Interpretation}
+\begin{itemize}
+    \item We can reject the null hypothesis that unrate does not Granger-cause inflation $(p-value = 0.002) \rightarrow$ unrate Granger-cause inflation
+    \item We can reject the null hypothesis that ffr does not Granger-cause unrate $(p-value = 0.001) \rightarrow$ ffr Granger-cause unrate
+\end{itemize}

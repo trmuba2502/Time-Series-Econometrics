@@ -1,0 +1,195 @@
+\section{Question 2}
+\textbf{i. Import data as the daily interval and use the following code to get the time interval as weekly:} \texttt{tsset your\_time\_var, delta(7)} \\
+\textbf{Convert both price series to a common unit (USD/kg). Plot the two price series on the same chart using two different y-axes.}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{Images/Question 2/price.png}
+    \caption{Arabica and Robusta weekly}
+    \label{fig:q2-price}
+\end{figure}
+
+\textbf{ii. Use the full sample and perform the ADF tests to determine whether these variables are integrated of order 1. Hint: Use varsoc d.your\_var, maxlag(12) to select an appropriate lag length for the ADF tests.}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/Question 2/varsoc_A.png}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/Question 2/varsoc_dA.png}
+    \end{subfigure}
+    \caption{Varsoc A and d.A}
+    \label{fig:varsoc-A}
+\end{figure}
+
+\begin{itemize}
+    \item For Arabica, AIC smallest at \textbf{lag 12} $\rightarrow$ The optimal lag length is 12.
+    \item For difference of Arabica, AIC smallest at \textbf{lag 11} $\rightarrow$ The optimal lag length is 11.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/Question 2/varsoc_R.png}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/Question 2/varsoc_dR.png}
+    \end{subfigure}
+    \caption{Varsoc R and d.R}
+    \label{fig:varsoc-R}
+\end{figure}
+
+\begin{itemize}
+    \item For Robusta, AIC smallest at \textbf{lag 12} $\rightarrow$ The optimal lag length is 12.
+    \item For difference of Robusta, AIC smallest at \textbf{lag 11} $\rightarrow$ The optimal lag length is 11.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/Question 2/adf_A.png}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/Question 2/adf_dA.png}
+    \end{subfigure}
+    \caption{Test order of integration of Arabica}
+    \label{fig:ADF-A}
+\end{figure}
+
+\begin{itemize}
+    \item AFD test of Arabica with 12 lags indicates the non-stationary while we can not reject the null hypothesis of nonstationary (p-value = 0.8309)
+    \item AFD test of difference off Arabica with 11 lags indicates the stationary while we can reject the null hypothesis of nonstationary (p-value = 0.0000)
+\end{itemize}
+
+\begin{figure}[H]
+    \centering 
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/Question 2/adf_R.png}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/Question 2/adf_dR.png}
+    \end{subfigure}
+    \caption{Test order of integration of Robusta}
+    \label{fig:ADF-R}
+\end{figure}
+
+\begin{itemize}
+    \item AFD test of Robusta with 12 lags indicates the non-stationary while we can not reject the null hypothesis of nonstationary (p-value = 0.8309)
+    \item AFD test of difference off Arabica with 11 lags indicates the stationary while we can reject the null hypothesis of nonstationary (p-value = 0.0000)
+\end{itemize}
+
+\textbf{Conclusion:} Both Arabica and Robusta are integrated of I(1) \\
+
+\textbf{iii. Assuming both variables are I(1), conduct a Johansen cointegration test for the two coffee price series. Do you find evidence of a cointegrating relationship? If so, estimate a Vector Error Correction Model (VECM) and briefly comment on the long-run and short-run results.}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{Images/Question 2/varsoc_A_R.png}
+    \caption{varsoc A and R}
+    \label{fig:var_dAdR}
+\end{figure}
+
+AIC smallest at lags 12 $\rightarrow$ the optimum lag length is 12 \\
+
+\hl{Long-run relationship: Johansen cointegration test}
+\begin{figure}[H]
+    \centering 
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/Question 2/jhs_t_rc.png}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/Question 2/jhs_t_rt.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/Question 2/jhs_t_t.png}
+    \end{subfigure}
+    \caption{Johansen cointegration test}
+    \label{fig:JHS test}
+\end{figure}
+
+The Johansen cointegration test results across all three specifications (restricted constant, restricted trend, and trend) indicate a rank of 0. Consequently, there is no evidence of a long-run relationship between the prices of Arabica and Robusta \\
+
+\hl{Short-run relationship: Granger Causality test}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{Images/Question 2/granger_iii.png}
+    \caption{Granger Causality test}
+    \label{fig:granger}
+\end{figure}
+
+\begin{itemize}
+    \item We can reject the null hypothesis that D.R\_kg does not Granger-cause D.A\_kg $(p-value = 0.000) \rightarrow$ D.R\_kg Granger-cause D.A\_kg
+    \item We can reject the null hypothesis that D.A\_kg does not Granger-cause D.R\_kg $(p-value = 0.002) \rightarrow$ D.A\_kg Granger-cause D.R\_kg \\
+    
+    \textbf{Conclusion:} The results show two-way Granger causality between the variables. Changes in Robusta prices Granger-cause changes in Arabica prices, and changes in Arabica prices also Granger-cause changes in Robusta prices.
+\end{itemize}
+
+\textbf{iv. Restrict the sample to the period 2008–2022 using: keep if tin(, 25dec2022)
+Re-run the Johansen test and interpret the results. Based on your interpretation, suggest the appropriate modeling approach for these two variables and perform it.}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{Images/Question 2/varsoc_A_R_iv.png}
+    \caption{varsoc A and R}
+    \label{fig:var_dAdR}
+\end{figure}
+
+AIC smallest at lags 4 $\rightarrow$ the optimum lag length is 4 \\
+
+\hl{Long-run relationship: Johansen cointegration test}
+\begin{figure}[H]
+    \centering 
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/Question 2/jhs_iv_t_rc.png}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/Question 2/jhs_iv_t_rt.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/Question 2/jhs_iv_t_t.png}
+    \end{subfigure}
+    \caption{Johansen cointegration test (2008–2022)}
+    \label{fig:JHS test iv}
+\end{figure}
+
+The Johansen cointegration test results across all three specifications (restricted constant, restricted trend, and trend) indicate a rank of 0. Consequently, there is no evidence of a long-run relationship between the prices of Arabica and Robusta. \\
+
+\hl{Short-run relationship: Granger Causality test}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{Images/Question 2/granger_iv.png}
+    \caption{Granger Causality test (2008–2022)}
+    \label{fig:granger}
+\end{figure}
+
+\begin{itemize}
+    \item We cannot reject the null hypothesis that D.R\_kg does not Granger-cause D.A\_kg $(p-value = 0.142) \rightarrow$ Robusta prices do not cause Arabica prices.
+    \item We cannot reject the null hypothesis that D.A\_kg does not Granger-cause D.R\_kg $(p-value = 0.365) \rightarrow$ Arabica prices do not cause Robusta prices. \\
+    
+    \textbf{Conclusion:} The results confirm that there is no Granger causality in either direction between the two markets during this specific period (2008–2022).
+\end{itemize}
