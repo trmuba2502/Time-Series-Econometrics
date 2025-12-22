@@ -1,4 +1,4 @@
-cd "D:\trang_github\Time-Series-Econometrics\Assignments\Assignment 6"
+cd "D:\trang_github\Time Series Econometrics\Assignments\Assignment 6"
 
 import  excel "Assignment 6.xlsx", sheet("macro model") firstrow clear
 

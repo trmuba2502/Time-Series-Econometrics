@@ -1,5 +1,5 @@
 clear
-cd "D:\trang_github\Time-Series-Econometrics\Assignments\Assignment 6"
+cd "D:\trang_github\Time Series Econometrics\Assignments\Assignment 6"
 
 import  excel "Assignment 6.xlsx", sheet("coffee weekly") firstrow clear
 
@@ -12,15 +12,15 @@ label variable A_kg "USD/kg"
 gen R_kg = R/1000
 label variable R_kg "USD/kg"
 
-tsline A_kg R_kg, ///
-    ytitle("$/kg") ///
-    xtitle("Time") ///
-    title("Arabica & Robusta Price") ///
-	xlabel(#4) ///
-	graphregion(margin(r+5)) ///
-    legend(label(1 "Price Arabica") label(2 "Price Robusta"))
+twoway (tsline R_kg, yaxis(1) lwidth(thin)) ///
+       (tsline A_kg, yaxis(2) lwidth(thin)), ///
+       title("Prices of Arabica and Robusta from 2008 - 2025") ///
+       ytitle("Robusta Price (USD/kg)", axis(1)) ///
+       ytitle("Arabica Price (USD/kg)", axis(2)) ///
+       xlabel(#10, format(%tdCCYY)) /// <-- (Hiện 10 mốc & chỉ hiện Năm)
+       legend(label(1 "Robusta") label(2 "Arabica"))
 graph export price.png, replace
-
+	   
 *Stationary test
 varsoc A_kg, maxlag(12)
 dfuller A_kg, lags(12)
