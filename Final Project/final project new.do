@@ -1,5 +1,6 @@
+clear
 cd "C:\Users\DELL\Downloads"
-use "C:\Users\Nam\OneDrive - VietNam National University - HCM INTERNATIONAL UNIVERSITY\Year 3\Time Series\Assignment\final project\[Time series] Final project.dta" 
+use "D:\trang_github\Time Series Econometrics\Final Project\inequality.dta" 
 
 format time %ty
 tsset time
@@ -13,14 +14,10 @@ tsline gini trade tbc, ///
 graph export lines.png, width(2000) height(1000) replace
 	
 dfuller gini
-gen dgini = d.gini
 dfuller dgini
 dfuller trade
-gen dtrade = d.trade
 dfuller dtrade
-dfuller def
-gen ddef = d.def
-dfuller ddef
+dfuller tbc
 // dfuller unem
 // gen dunem = d.unem
 // dfuller dunem
@@ -31,3 +28,9 @@ var gini trade tbc, lags(1(1)2)
 
 irf create myirf, set(myirfs) replace
 irf graph oirf, impulse(gini trade tbc) response(gini trade tbc)
+
+irf graph oirf, impulse(gini trade tbc) response(gini) level(90)
+
+irf graph oirf, impulse(gini trade tbc) response(trade) level(90)
+
+irf graph oirf, impulse(gini trade tbc) response(tbc) level(90)
