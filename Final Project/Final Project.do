@@ -1,9 +1,6 @@
 clear
 cd "D:\trang_github\Time Series Econometrics\Final Project"
-use "inequality.dta" 
-
-format time %ty
-tsset time
+use "data.dta" 
 
 tsline gini trade tax spend, ///
     xtitle("Year") ytitle("%") ///
@@ -34,11 +31,12 @@ vecrank gini trade tax spend, lags(3)
 
 irf create myirf, set(myirfs) replace
 irf graph oirf, impulse(gini trade tax spend) response(gini trade tax spend)
+irf graph fevd, impulse(trade tax spend gini) response(gini)
 
-irf graph oirf, impulse(trade) response(gini trade tax spend) byopts(rows(1)) xsize(12) ysize(4)
-irf graph oirf, impulse(tax) response(gini trade tax spend) byopts(rows(1)) xsize(12) ysize(4)
-irf graph oirf, impulse(spend) response(gini trade tax spend) byopts(rows(1)) xsize(12) ysize(4)
-irf graph oirf, impulse(gini) response(gini trade tax spend) byopts(rows(1)) xsize(12) ysize(4)
+irf graph oirf, impulse(trade) response(gini trade tax spend) byopts(rows(2)) xsize(12) ysize(8)
+irf graph oirf, impulse(tax) response(gini trade tax spend) byopts(rows(2)) xsize(12) ysize(8)
+irf graph oirf, impulse(spend) response(gini trade tax spend) byopts(rows(2)) xsize(12) ysize(8)
+irf graph oirf, impulse(gini) response(gini trade tax spend) byopts(rows(2)) xsize(12) ysize(8)
 	
 irf table oirf, impulse(trade) response(gini trade tax spend)
 irf table oirf, impulse(tax) response(gini trade tax spend)
