@@ -1,0 +1,26 @@
+\begin{table}[H]
+    \centering
+    \caption{Lag length selection criteria}
+    \label{tab:lag_selection}
+    \begin{threeparttable}
+        \footnotesize 
+        % Thiết lập khoảng cách giữa các cột rộng hơn (mặc định là 6pt)
+        \setlength{\tabcolsep}{10pt} 
+        
+        \begin{tabular}{l c c c c c c} 
+            \toprule
+            \textbf{Lag} & \textbf{LL} & \textbf{LR} & \textbf{FPE} & \textbf{AIC} & \textbf{HQIC} & \textbf{SBIC} \\ 
+            \midrule
+            0 & -394.423 & & 190.464 & 16.6009 & 16.6599 & 16.7569 \\ \addlinespace[0.07cm]
+            1 & -253.888 & 281.07 & 1.06558 & 11.412 & 11.7066$^{*}$ & 12.1917$^{*}$ \\ \addlinespace[0.07cm]
+            2 & -239.369 & 29.037 & 1.15048 & 11.4737 & 12.0041 & 12.8771 \\ \addlinespace[0.07cm]
+            3 & -218.707 & \textbf{41.325}$^{*}$ & \textbf{0.98352}$^{*}$ & \textbf{11.2795}$^{*}$ & 12.0455 & 13.3066 \\ \addlinespace[0.07cm]
+            4 & -206.015 & 25.384 & 1.21416 & 11.4173 & 12.4191 & 14.0682 \\ 
+            \bottomrule
+        \end{tabular}
+        \begin{tablenotes}[flushleft]
+            \footnotesize
+            \item \textit{Notes:} $^{*}$ indicates the optimal number of lags according to the respective criteria.
+        \end{tablenotes}
+    \end{threeparttable}
+\end{table}

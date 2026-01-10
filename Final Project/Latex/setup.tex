@@ -1,0 +1,60 @@
+\usepackage[margin = 25mm]{geometry} %
+\usepackage{graphicx} % Required for inserting images
+\usepackage[toc]{appendix}
+\usepackage[english=usenglishmax]{hyphsubst} %sets hyphenation to American English. Google is your friend on hyphenation. Babel could also be used
+\usepackage[hyphens]{url}
+\usepackage{amsmath, amssymb, setspace, float, subcaption, caption, booktabs, pdflscape, dcolumn, titlesec, tocloft, comment, xcolor, longtable, blindtext, rotating, lipsum}
+\usepackage[flushleft]{threeparttable}
+\usepackage[round, numbers, authoryear]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{subcaption}
+\usepackage{array}
+
+\usepackage[T5]{fontenc}
+\usepackage{tabularray}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese,english]{babel}
+\usepackage{algorithm}
+\usepackage{examplep}
+\usepackage{algpseudocode}
+\usepackage{kantlipsum}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{geometry}
+\usepackage{longtable}
+\usepackage{svg}
+\usepackage{soul}
+\usepackage{indentfirst}
+
+\usepackage[nameinlink]{cleveref}
+%Option [nameinlink] chính là chìa khóa để cả chữ "Table" cũng dính vào link.
+% Viết hoa chữ cái đầu (đầu câu)\Cref{tab:data_description} 
+% Hoặc viết thường (giữa câu - tuỳ settings)\cref{tab:data_description}
+\usepackage[labelfont=bf]{caption}  %in đậm label của caption
+
+\hypersetup{
+    colorlinks = true, %If links to papers should be colored
+    citecolor = blue, %color of citation text
+    urlcolor = blue, %if you use an URL, this is how it is colored
+    linkcolor = black
+}
+
+\graphicspath{{figures/}}
+
+%CHANGE SECTION STYLE
+\titleformat{\section}{\centering\normalfont\normalsize\bfseries}{\thesection}{0.5em}{} %bfseries makes the headings bold
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize}{\thesubsubsection}{0.5em}{}
+
+%TABLE OF CONTENTS FIXING
+\renewcommand*\contentsname{CONTENTS} %Change name
+\setcounter{tocdepth}{3} %How many subsections are visible, 1 is only section headings, 3 include subsubsections
+
+% This forces the 'thanks' (footnote in title/author) to use numbers
+% \makeatletter
+% \let\@fnsymbol\@arabic
+% \makeatother
+
+\bibliographystyle{apalike} %closest to LUSEM Harvard referencing guide

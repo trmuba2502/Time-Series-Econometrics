@@ -1,0 +1,66 @@
+\documentclass[a4paper, 12pt]{article}
+\input{setup}
+
+\title{Inequality and Trade Openness in the U.S.: Is There a Significant Linkage?}
+
+\author{
+    Duong Thi Nhu Y\thanks{International University - VNUHCM},  Duong Hanh Trang\protect\footnotemark[1]
+}
+
+\date{January 2026}
+
+\begin{document}
+    %THE UNFORTUNATE TITLE PAGE THAT NEEDS TO BE INCLUDED
+    \input{title}
+    \newpage
+    \maketitle
+    %\begin{abstract}
+    %\setstretch{1}
+    %Write an abstract here, which should efficiently summarise your paper. \lipsum[1] \\
+        %\noindent \textbf{Keywords:}  3 -- 5 key words\\
+    %\end{abstract}
+    \setcounter{page}{1}
+    
+    %INTRODUCTION
+    \hypersetup{linkcolor=blue}
+    \input{sections/1 introduction}
+    \newpage
+    \input{sections/2 lit-review}
+    \newpage
+    \input{sections/3 method and ana}
+    \newpage
+    \input{sections/4 IRF}
+    \newpage
+    \input{sections/5 conclusion}
+    
+    
+    % REFERENCES
+    \titleformat{\section}{\normalfont\huge\bfseries}{\thesection}{1em}{} 
+    \newpage
+    \phantomsection % Lệnh này giúp liên kết (hyperlink) trong mục lục nhảy đúng đến trang này
+    \addcontentsline{toc}{section}{Data Availability}
+    \input{Data avai}
+    % \newpage
+    \addcontentsline{toc}{section}{AI Declaration}
+    \input{AI-assisted declaration}
+    \newpage
+    \addcontentsline{toc}{section}{References} %Adds the reference to the Table of Contents
+    \bibliography{bibliography}
+    \newpage
+    \listoftables
+    \addcontentsline{toc}{section}{List of tables}
+    \listoffigures
+    \addcontentsline{toc}{section}{List of figures}
+
+    \begin{appendix}
+        \setcounter{section}{0} %Đưa số thứ tự về 0 để bắt đầu từ A
+        \setcounter{page}{2} 
+        \pagenumbering{roman} 
+        % Định dạng tiêu đề hiển thị trang phụ lục (Căn trái, cỡ Large)
+        \titleformat{\section}{\raggedright\normalfont\Large\bfseries}{Appendix \thesection: }{0em}{}
+        % Ẩn số trang cho đề mục lớn APPENDIXES trong Mục lục
+        \addtocontents{toc}{\protect\contentsline{section}{APPENDIXES}{}{}}
+        \input{appendixes/tables}
+        \input{appendixes/figures}
+    \end{appendix}
+\end{document}

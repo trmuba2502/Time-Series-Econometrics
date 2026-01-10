@@ -1,0 +1,30 @@
+\begin{table}[H]
+    \centering
+    \caption{ADF test for stationarity or unit root tests}
+    \label{tab:adf_test}
+    \begin{threeparttable}
+        \footnotesize 
+        % Thiết lập độ dãn dòng (1.0 là mặc định, dưới 1.0 sẽ rất sát)
+        \renewcommand{\arraystretch}{1.0} 
+        % Thiết lập khoảng cách cột vừa phải
+        \setlength{\tabcolsep}{10pt} 
+        
+        \begin{tabular}{l cc} 
+            \toprule
+            & \multicolumn{2}{c}{\textbf{ADF (t-statistic)}} \\
+            \cmidrule(lr){2-3}
+            \textbf{Variables} & \textbf{Data (at level)} & \textbf{Data (first difference)} \\ 
+            \midrule
+            Gini index (gini) & $-0.938$ & $-6.884^{***}$ \\ 
+            Trade openness (trade) & $-2.253$ & $-7.330^{***}$ \\ 
+            Tax revenues (tax) & $-3.115^{**}$ & $-5.626^{***}$ \\ 
+            Government spending (spend) & $-2.695^{*}$ & $-6.533^{***}$ \\ 
+            \bottomrule
+        \end{tabular}
+        
+        \begin{tablenotes}[flushleft]
+            \footnotesize
+            \item \textit{Note:} $^{*}$, $^{**}$ and $^{***}$ denote statistical significance at 10\%, 5\% and 1\%.
+        \end{tablenotes}
+    \end{threeparttable}
+\end{table}

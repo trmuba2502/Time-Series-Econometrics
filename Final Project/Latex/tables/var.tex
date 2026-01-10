@@ -1,0 +1,27 @@
+\begin{table}[H]
+    \centering
+    \caption{Variables and Data Sources}
+    \label{tab:data_description}
+    \begin{threeparttable}
+        \small 
+        \begin{tabular}{
+            >{\raggedright\arraybackslash}p{6cm} 
+            c % <--- Changed from 'l' to 'c' to centralize the Unit column
+            c 
+            >{\raggedright\arraybackslash\hangindent=0.2cm}p{5cm} 
+        } 
+            \toprule
+            \textbf{Variables} & \textbf{Notations}  & \textbf{Unit} & \textbf{Source and Notes} \\ 
+            \midrule
+            \hspace*{0.2cm}Gini index  & gini & \% & World Development Indicator \\ \addlinespace[0.07cm]
+            \hspace*{0.2cm}Trade openness & trade & \% & World Bank Indicator \\ \addlinespace[0.07cm]
+            \hspace*{0.2cm}Tax revenues (\% GDP) & tax & \% & FRED$^{*}$ \\ \addlinespace[0.07cm]
+            \hspace*{0.2cm}Government spending (\% GDP) & spend & \% & FRED$^{*}$ \\
+            \bottomrule
+        \end{tabular}
+        \begin{tablenotes}[flushleft]
+            \footnotesize
+            \item \textit{Note:} $^{*}$ denote Federal Reserve Economic Data, Federal Reserve Bank of St. Louis.
+        \end{tablenotes}
+    \end{threeparttable}
+\end{table}

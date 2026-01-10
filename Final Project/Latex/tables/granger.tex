@@ -1,0 +1,36 @@
+\begin{table}[H]
+    \centering
+    \caption{Granger causality Wald tests}
+    \label{tab:granger}
+    \begin{threeparttable}
+        \footnotesize
+        \begin{tabular}{r r | c c c} % Thêm ký tự | ở đây để tạo đường kẻ dọc
+            \toprule
+            \textbf{Equation} & \textbf{Excluded} & \textbf{chi2} & \textbf{df} & \textbf{Prob > chi2} \\
+            \midrule
+            gini & trade & 3.0724 & 3 & 0.381 \\
+            gini & tax & 2.397 & 3 & 0.494 \\
+            gini & spend & 6.1552 & 3 & 0.104 \\
+            gini & ALL & 19.547 & 9 & 0.021 \\
+            \midrule
+            trade & gini & 2.2508 & 3 & 0.522 \\
+            trade & tax & 13.569 & 3 & 0.004 \\
+            trade & spend & 6.9031 & 3 & 0.075 \\
+            trade & ALL & 31.948 & 9 & 0.000 \\
+            \midrule
+            tax & gini & 3.0891 & 3 & 0.378 \\
+            tax & trade & 8.4465 & 3 & 0.038 \\
+            tax & spend & 5.1162 & 3 & 0.163 \\
+            tax & ALL & 28.281 & 9 & 0.001 \\
+            \midrule
+            spend & gini & .7777 & 3 & 0.855 \\
+            spend & trade & 5.889 & 3 & 0.117 \\
+            spend & tax & 23.73 & 3 & 0.000 \\
+            spend & ALL & 26.85 & 9 & 0.001 \\
+            \bottomrule
+        \end{tabular}
+        \begin{tablenotes}[flushleft]
+            \item \textit{Note:} $H_0$: the estimated coefficients on the lagged values are jointly zero.
+        \end{tablenotes}
+    \end{threeparttable}
+\end{table}

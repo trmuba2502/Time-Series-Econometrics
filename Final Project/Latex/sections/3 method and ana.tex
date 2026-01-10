@@ -1,0 +1,78 @@
+\section{METHODOLOGY AND DATA ANALYSIS}
+\label{sec: method and ana}
+
+\subsection{Variable selection}
+\label{subsec: var_select}
+    To analyze the impact of trade openness on inequality, we utilize annual data of the United States from 1972 to 2023. Following some studies about income inequality (\citeauthor{musgrave1989public}, \citeyearpar{musgrave1989public}; \citeauthor{rojas2025}, \citeyearpar{rojas2025}), we select four endogenous variables: trade openness, Gini index, Tax revenues, and Government spending.
+    \\
+    
+    \textbf{Trade Openness}\\
+    
+    In order to measure the trade openness of the U.S., the trade openness indicator is taken into consideration. The variable represents the percentage of the sum of export and import amounts in the GDP.\\
+    
+    \textbf{Gini index (Gini coefficient)}\\
+    
+    This study utilizes the Gini coefficient as the dependent variable to quantify income inequality. Originally developed by \cite{gini}, this index measures the extent to which the distribution of income within an economy deviates from a perfectly equal distribution. Methodologically, the coefficient is derived from the Lorenz Curve, calculated as the ratio of the area between the line of perfect equality and the observed income distribution curve. In this analysis, the index is expressed as a percentage ranging from 0 (perfect equality) to 100 (maximum inequality).\\
+    
+    \textbf{Tax revenues and government spending}\\ 
+    
+    To ensure the unbiasedness of the model, Tax Revenue and Government Spending (as \% of GDP) are included as control variables. According to \cite{musgrave1989public}, fiscal policy is the most direct instrument for income redistribution. Specifically, while taxation extracts resources from high-income groups, government spending reallocates them to lower-income households through subsidies and public services. \\
+    %Public Finance in Theory and practice 5th edition - Fiscal Instruments of Distribution Polley - Page 11
+    %There are a variety of taxes, but to keep it simple and the data available, we take the general values one instead of most papers did as VAT.   
+    
+     The summaries of variable definitions, measurement units, and data sources utilized in this study are depicted in \Cref{tab:data_description}. In addition, to ensure consistency and reliability, all data in this paper is sourced from reputable international databases, including the World Bank and the Federal Reserve Economic Data (FRED).
+    \input{tables/var}
+
+    \Cref{tab:data_descriptive} presents the descriptive statistics for the observed variables over the 1972–2023 period. The Gini index has a mean of 39.13\% with a standard deviation of 2.29\%, fluctuating between a minimum of 34.70\% and a maximum of 41.90\%. Trade openness averages 22.32\% but shows significant volatility (Std. Dev. = 4.90\%). Regarding fiscal policy, Government spending (mean = 14.42\%) is on average higher and more volatile (Std. Dev. = 2.60\%) than Tax revenues (mean = 10.89\%; Std. Dev. = 1.03\%)
+    \input{tables/data descriptive}
+
+\subsection{Model specification}
+\label{subsec: Model specification}
+    \Cref{fig:lines} visualizes the evolution of the Gini index, trade openness, tax revenue, and government spending in the U.S. economy from 1972 to 2023. The Gini index exhibits a persistent upward trend, rising from approximately 36\% in the early 1970s to over 41\% in recent years, signaling an increase in income inequality over the last five decades. Similarly, Trade Openness shows a long-term increasing trend, reflecting the deepening integration of the U.S. into the global economy, although it displays higher volatility with noticeable dips during the 2008 Global Financial Crisis and the onset of the COVID-19 pandemic.\\
+    
+    Regarding fiscal policy, tax revenue remains relatively stable, hovering around 10-12\%. In contrast, public spending exhibits counter-cyclical behavior, with a dramatic spike observed in the 2020–2021 period, corresponding to the massive fiscal stimulus packages implemented in response to the COVID-19 shock.
+    %countercyclical' fiscal policy takes the opposite approach: reducing spending and raising taxes during a boom period, and increasing spending and cutting taxes during a recession. link: https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:Counter-cyclical_fiscal_measures
+    
+    \begin{figure}[H]
+        \centering
+        \caption{The movements of Income equality, Trade openness, Tax revenues, and Government spending in the U.S. from 1972 - 2023}
+        \includegraphics[scale=0.2]{images/lines.png}
+        \label{fig:lines}
+    \end{figure}
+    
+    \subsubsection{Unit root tests}
+    \label{subsubsec: Unit root tests} 
+        Firstly, the stationarity of the time series was tested using the Augmented Dickey-Fuller (ADF) test \cite{adf}. The results, as shown in (\Cref{tab:adf_test}), indicate that all variables are non-stationary at levels but become stationary at first difference (I(1)) at the 1\% significance levels.
+        \input{tables/adf_test}
+        
+    \subsubsection{VAR model}
+    \label{subsubsec: VAR model}  
+        The primary objective of this study is to analyze the dynamic interdependencies between trade, fiscal policy, and inequality without imposing a priori structural restrictions. We employ a Vector Autoregressive (VAR) model \citep{sims1990inference}. The reduced-form VAR model of order $p$ is specified as follows:
+        \[
+        X_t = \alpha+A_1X_{t-1}+A_2X_{t-2}+...+A_pX_{t-p}+\epsilon_t
+        \]
+        where $X_t$ is the vector of endogenous variables (Gini index, Trade openness, Tax revenues, Government spending); $\alpha$ is the vector of intercepts; the $As$ are the coefficient matrices. Finally, $\epsilon_t$ is a vector of error terms, which are assumed to be serially uncorrelated.\\
+
+        Although standard econometric textbooks often suggest differencing non-stationary variables (I(1)) to achieve stationarity, we elect to estimate the VAR model in levels. According to \cite{sims1990inference}, the stationary of overall model is more important. Even when variables are non-stationary and not cointegrated, the estimators in a level VAR are consistent for Impulse Response Functions (IRF).
+        
+    \subsubsection{Lag length criteria}
+    \label{subsubsec: varsoc}
+        To determine the optimal lag order ($p$) for the VAR model specified above, we evaluated standard information criteria including the Likelihood Ratio (LR), Final Prediction Error (FPE), Akaike Information Criterion (AIC), and Schwarz Bayesian Information Criterion (SBIC).  \Cref{tab:lag_selection} presents the results.\\
+        
+        While the SBIC and HQIC suggest model with 1 lag, the AIC, FPE, and LR tests all indicate that a lag order of 3 is optimal. In this study, the AIC information standard is preferred to capture the lagged effects of fiscal policy and trade openness shocks on inequality. As a result, the selected lag is 3 (VAR(3)).
+        \input{tables/varsoc}
+    
+    \subsubsection{Cointegration test}
+    \label{subsubsec: coin_test}
+        To check for the cointegration relationship, we conducted the Johansen cointegration test. \Cref{tab:johansen} (\Cref{app:tables}), indicates a cointegration rank of zero, meaning that there is no cointegration relationship. Therefore, we conduct the Vector Autoregression (VAR) model to analyze the short-term dynamics and impulse response functions, and ignore the Vector Error Correction Mechanism (VECM). \\
+        
+    \subsubsection{Model Diagnostics}
+    \label{subsubsec: model_diag}
+        To ensure the statistical reliability of the estimated VAR model, we conducted tests of stability, residual autocorrelation, and causal relationships.\\
+        
+        First, as illustrated in \Cref{fig:stability} (\Cref{app:figures}), all characteristic roots lie within the unit circle. Since no root lies on or outside the boundary (i.e., with the largest modulus being 0.928), the model satisfies the stability condition.\\
+        
+        Second, the Lagrange Multiplier (LM) test was employed to check whether the residual is white noise. The results in \Cref{tab:lmar} (\Cref{app:tables}) reveal that we cannot reject the null hypothesis of no autocorrelation at the 5\% significance level for both lag order 1 (p = 0.628) and lag order 2 (p = 0.901). This confirms that the selected lag length is appropriate for the model since the residuals are white noise.\\
+
+        Finally, to examine the dynamic interactions within the system, we performed Granger causality tests, which evaluate the null hypothesis that the estimated coefficients on the lagged values of the explanatory variables are jointly zero (Granger, 1969). As reported in \Cref{tab:granger} (\Cref{app:tables}), regarding the income inequality (Gini) equation, while the Wald tests fail to reject the null hypothesis for individual macroeconomic variables (trade, tax, spend), the test significantly rejects the null hypothesis for the variables as a group ($\chi^2 = 19.55, p = 0.021$). This result suggests that trade openness and fiscal policy variables jointly Granger-cause income inequality, confirming that they possess significant predictive power when considered collectively. Furthermore, the results reveal significant interactions among other variables in the system. Notably, tax revenue is found to significantly Granger-cause trade openness (p < 0.01). This evidence of interdependence confirms that the variables form a complex system, thereby justifying the use of a multivariate VAR framework instead of analyzing them in isolation.    
+        %https://www.stata.com/manuals14/tsvargranger.pdf#tsvargranger
